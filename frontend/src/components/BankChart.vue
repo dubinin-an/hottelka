@@ -34,7 +34,8 @@
         <q-btn flat :label="$t('add')" @click="add" v-close-popup />
       </q-card-actions>
     </q-card>
-  </q-dialog></template>
+  </q-dialog>
+</template>
 
 <script setup lang="ts">
 
