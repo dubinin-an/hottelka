@@ -1,14 +1,65 @@
 <template>
   <div class="q-pa-md">
     <q-table
+      grid
+      grid-header
       flat
+      square
       :rows="rows"
       :columns="columns"
       row-key="index"
-      virtual-scroll
-      :virtual-scroll-sticky-size-start="48"
-      class="my-sticky-virtscroll-table"
-    />
+      hide-pagination
+      class="my-sticky-virtscroll-table bg-transparent"
+    >
+      <template v-slot:item="props">
+<!--        <div style="display: flex" :props="props">-->
+<!--          {{props.row}}-->
+<!--          <q-btn round>-->
+<!--            <q-avatar size="28px">-->
+<!--              <img :src="props.row.icon" />-->
+<!--            </q-avatar>-->
+<!--          </q-btn>-->
+<!--          <div>-->
+<!--            {{}}-->
+<!--          </div>-->
+
+<!--        </div>-->
+        <q-item>
+          <q-item-section top avatar>
+            <q-avatar>
+              <img :src="props.row.icon" />
+            </q-avatar>
+          </q-item-section>
+
+          <q-item-section style="width: 100%">
+            <q-item-label>{{props.row.wish}}</q-item-label>
+<!--            <q-item-label caption lines="2">Secondary line text. Lorem ipsum dolor sit amet, consectetur adipiscit elit.</q-item-label>-->
+          </q-item-section>
+
+          <q-item-section side top>
+            <q-item-label caption>{{props.row.cost}}</q-item-label>
+          </q-item-section>
+
+          <q-item-section side top>
+            <q-item-label caption>
+              <q-knob
+                :min="20"
+                :max="70"
+                v-model="props.row.bank"
+                show-value
+                size="50px"
+                :thickness="0.22"
+                color="teal"
+                track-color="grey-3"
+                class="q-ma-md"
+              />
+            </q-item-label>
+          </q-item-section>
+        </q-item>
+
+      </template>
+    </q-table>
+
   </div>
 </template>
 
@@ -16,49 +67,43 @@
 const rows = [
   {
     icon: '',
-    wish: 'Frozen Yogurt',
+    wish: '1Frozen Yogurt',
     cost: 35000,
     bank: 30,
   },
   {
     icon: '',
-    wish: 'Frozen Yogurt',
+    wish: '2Frozen Yogurt',
     cost: 35000,
     bank: 30,
   },
   {
     icon: '',
-    wish: 'Frozen Yogurt',
+    wish: '3Frozen Yogurt',
     cost: 35000,
     bank: 30,
   },
   {
     icon: '',
-    wish: 'Frozen Yogurt',
+    wish: '4Frozen Yogurt',
     cost: 35000,
     bank: 30,
   },
   {
     icon: '',
-    wish: 'Frozen Yogurt',
+    wish: '5Frozen Yogurt',
     cost: 35000,
     bank: 30,
   },
   {
     icon: '',
-    wish: 'Frozen Yogurt',
+    wish: '6Frozen Yogurt',
     cost: 35000,
     bank: 30,
   },
   {
     icon: '',
-    wish: 'Frozen Yogurt',
-    cost: 35000,
-    bank: 30,
-  },
-  {
-    icon: '',
-    wish: 'Frozen Yogurt',
+    wish: '7Frozen Yogurt',
     cost: 35000,
     bank: 30,
   },
@@ -81,24 +126,29 @@ const columns = [
 
 <style scoped lang="scss">
 
-.my-sticky-virtscroll-table {  /* height or max-height is important */
-  height: 410px;
+.my-sticky-header-table::v-deep {
+  tbody {
+    max-height: 86vh;
+    background-color: transparent;
+    color: $secondary;
+  }
 
-  .q-table__top,
-  .q-table__bottom,
-  thead tr:first-child th {
-    background-color: #fff;
+  .q-item__section--side{
+    color: $secondary;
   }
-  thead tr th {
+
+  thead tr:first-child th {
+    background-color: $accent;
+    color: $secondary;
+    font-weight: bold;
+    z-index: 1000;
+    padding: 20px;
+  }
+  thead tr:first-child th{
     position: sticky;
-    z-index: 1;
-  }  /* this will be the loading indicator */
-  thead tr:last-child th {    /* height of all previous header rows */
-    top: 48px;
-  }
-  thead tr:first-child th {
     top: 0;
   }
+
 }
 
 </style>
