@@ -13,7 +13,7 @@
 
 <style scoped lang="scss">
 .my-card{
-  height: 40%;
+  height: 40vh;
   background-color: white;
   border-bottom-right-radius: 30px;
   border-bottom-left-radius: 30px;

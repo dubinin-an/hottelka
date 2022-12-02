@@ -142,7 +142,7 @@ function toggleLeftDrawer() {
 <style scoped lang="scss">
 .q-page-container{
   background-color: $secondary;
-  height: 100vh;
+  height: 100%;
 }
 
 </style>

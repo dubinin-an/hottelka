@@ -6,6 +6,10 @@ export default {
   addMony: 'Add money to bank',
   add: 'Add',
   cancel: 'Cancel',
+  wish: 'wish',
+  cost: 'Price',
+  bank: '%',
+
   failed: 'Action failed',
   success: 'Action was successful'
 };

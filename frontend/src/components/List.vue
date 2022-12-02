@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md">
+  <div class="q-pa-md borderBottom">
     <q-table
       grid
       grid-header
@@ -11,52 +11,46 @@
       hide-pagination
       class="my-sticky-virtscroll-table bg-transparent"
     >
+      <template v-slot:header="props">
+        <q-tr :props="props">
+          <q-th
+            v-for="col in props.cols"
+            :key="col.name"
+            :props="props"
+            class="text-weight-bolder text-subtitle1"
+            :style="`width: ${col.width} !important`"
+          >
+            <span class="text-weight-bolder text-subtitle1">{{ $te(col.name) ? $t(col.name) : '&ensp;	' }}</span>
+          </q-th>
+        </q-tr>
+      </template>
       <template v-slot:item="props">
-<!--        <div style="display: flex" :props="props">-->
-<!--          {{props.row}}-->
-<!--          <q-btn round>-->
-<!--            <q-avatar size="28px">-->
-<!--              <img :src="props.row.icon" />-->
-<!--            </q-avatar>-->
-<!--          </q-btn>-->
-<!--          <div>-->
-<!--            {{}}-->
-<!--          </div>-->
-
-<!--        </div>-->
-        <q-item>
-          <q-item-section top avatar>
-            <q-avatar>
+        <div class="row justify-between items-center" style="width: 100%" :props="props">
+          <q-btn round>
+            <q-avatar size="28px">
               <img :src="props.row.icon" />
             </q-avatar>
-          </q-item-section>
-
-          <q-item-section style="width: 100%">
-            <q-item-label>{{props.row.wish}}</q-item-label>
-<!--            <q-item-label caption lines="2">Secondary line text. Lorem ipsum dolor sit amet, consectetur adipiscit elit.</q-item-label>-->
-          </q-item-section>
-
-          <q-item-section side top>
-            <q-item-label caption>{{props.row.cost}}</q-item-label>
-          </q-item-section>
-
-          <q-item-section side top>
-            <q-item-label caption>
-              <q-knob
-                :min="20"
-                :max="70"
-                v-model="props.row.bank"
-                show-value
-                size="50px"
-                :thickness="0.22"
-                color="teal"
-                track-color="grey-3"
-                class="q-ma-md"
-              />
-            </q-item-label>
-          </q-item-section>
-        </q-item>
-
+          </q-btn>
+          <div class="col-auto">
+            {{props.row.wish}}
+          </div>
+          <div class="col-auto">
+            {{props.row.cost}}
+          </div>
+          <div class="col-auto">
+            <q-knob
+              :min="20"
+              :max="70"
+              v-model="props.row.bank"
+              show-value
+              size="50px"
+              :thickness="0.22"
+              color="teal"
+              track-color="grey-3"
+              class="q-ma-md"
+            />
+          </div>
+        </div>
       </template>
     </q-table>
 
@@ -109,7 +103,7 @@ const rows = [
   },
 ]
 const columns = [
-  { name: 'icon', align: 'center', field: 'icon' },
+  { name: 'icon', align: 'center', field: 'icon'},
   {
     name: 'wish',
     required: true,
@@ -119,12 +113,17 @@ const columns = [
     format: val => `${val}`,
     sortable: true
   },
-  { name: 'cost', align: 'center', label: 'cost', field: 'cost', sortable: true },
-  { name: 'bank', label: '%', field: 'bank', sortable: true },
+  { name: 'cost', align: 'center', label: 'cost', field: 'cost', sortable: true},
+  { name: 'bank', label: '%', field: 'bank'},
 ]
 </script>
-
+<style>
+.borderBottom .q-table--grid .q-table__middle{
+  border-bottom: 1px solid darkgray !important;
+}
+</style>
 <style scoped lang="scss">
+
 
 .my-sticky-header-table::v-deep {
   tbody {
@@ -150,5 +149,4 @@ const columns = [
   }
 
 }
-
 </style>

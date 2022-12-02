@@ -6,6 +6,11 @@ export default {
   addMony: 'Добавить деньги в копилку',
   add: 'Добавить',
   cancel: 'Отменить',
+  wish: 'Хочу',
+  cost: 'Цена',
+  bank: '%',
+
+
   failed: 'Action failed',
   success: 'Action was successful'
 };
